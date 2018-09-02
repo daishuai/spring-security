@@ -1,0 +1,45 @@
+server:
+  port: 7878
+spring:
+  application:
+    name: spring-security
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.192:3306/springboot?useSSL=false
+    username: root
+    password: root
+  #redis配置
+  redis:
+    host: 192.168.1.192 #默认值：localhost
+    port: 6379  #默认值：6379
+  rabbitmq:
+    host: 192.168.1.192   #默认值：localhost
+    port: 5672            #默认值：5672
+    virtual-host: /       #默认值：/
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        ## PhysicalNamingStrategyStandardImpl 有 DefaultNamingStrategy的效果
+        ## SpringPhysicalNamingStrategy 有 ImprovedNamingStrategy的效果
+  #Spring Session存储
+  session:
+    store-type: none
+  #国际化配置
+  messages:
+    basename: i18n.login
+  #Thymeleaf配置
+  thymeleaf:
+    cache: false
+    mode: HTML
+#安全校验
+security:
+  basic:
+    enabled: true  #默认值：true
+#自定义配置
+spring-security:
+  browser:
+    #loginPage:
+    loginType: HTML
