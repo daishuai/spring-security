@@ -1,5 +1,6 @@
 package com.daishuai.web.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.Map;
  * Copyright: Copyright (c) 2018
  */
 @Controller
+@Slf4j
 public class HelloController {
 
     @RequestMapping("/hello")
@@ -24,11 +26,12 @@ public class HelloController {
         return "Hello World!";
     }
 
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public String index(Authentication authentication, @AuthenticationPrincipal UserDetails user){
+        log.info("调用接口：/index");
         Map<String, Object> map = new HashMap<>();
         map.put("authentication", authentication);
         map.put("userDetails", user);
         return "index";
-    }
+    }*/
 }

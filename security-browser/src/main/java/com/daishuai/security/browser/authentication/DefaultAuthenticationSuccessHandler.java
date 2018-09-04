@@ -33,9 +33,11 @@ public class DefaultAuthenticationSuccessHandler extends SavedRequestAwareAuthen
         log.info("登陆成功");
 
         if ("JSON".equals(securityProperties.getBrowser().getLoginType())){
+            log.info("登陆方式：JSON");
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(JsonUtilForJack2.beanToJson(authentication));
         } else {
+            log.info("登陆方式：{}", securityProperties.getBrowser().getLoginType());
             super.onAuthenticationSuccess(request, response, authentication);
         }
     }

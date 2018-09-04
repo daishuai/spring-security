@@ -41,6 +41,11 @@
                                th:placeholder="#{login.password}" required="" name="password"/>
                     </div>
                     <div>
+                        <input type="text" class="form-control" placeholder="ValidateCode"
+                               th:placeholder="#{login.imageCode}" required="" name="imageCode"/>
+                        <img src="/code/image" th:src="@{/code/image}"/>
+                    </div>
+                    <div>
                         <button class="btn btn-default submit" th:text="#{login.button}" type="submit">Log in</button>
                         <a class="reset_pass" href="#">Lost your password?</a>
                     </div>

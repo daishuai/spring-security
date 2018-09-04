@@ -1,6 +1,7 @@
 package com.daishuai.security.browser;
 
 import com.daishuai.security.core.properties.SecurityProperties;
+import com.daishuai.security.core.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @Description: java类作用描述
@@ -38,15 +40,18 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        validateCodeFilter.setFailureHandler(failureHandler);
         //http.httpBasic()    //httpBasic登陆
-        http.formLogin()    //表单登陆
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+            .formLogin()    //表单登陆
             .loginPage("/authentication/require")
             .loginProcessingUrl("/authenticate/form")
             .successHandler(successHandler)
             .failureHandler(failureHandler)
             .and()
             .authorizeRequests()
-            .antMatchers("/build/**", "/vendors/**", "/authentication/require", "/login",
+            .antMatchers("/build/**", "/vendors/**", "/authentication/require", "/login", "/code/image",
                     securityProperties.getBrowser().getLoginPage()).permitAll()
             .anyRequest()
             .authenticated()

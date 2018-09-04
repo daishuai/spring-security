@@ -20,9 +20,9 @@ import javax.persistence.Table;
 @Entity
 public class User {
 
-    public interface UserSimpleView{};
+    public interface UserSimpleView{}
 
-    public interface UserDetailView extends UserSimpleView{};
+    public interface UserDetailView extends UserSimpleView{}
 
     @Id
     @JsonView(UserSimpleView.class)

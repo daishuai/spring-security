@@ -65,8 +65,9 @@ public class BrowserSecurityController {
     }
 
 
-    @RequestMapping("/login")
+    /*@RequestMapping("/login")
     public String login(){
+        log.info("接口：/login");
         return "login";
-    }
+    }*/
 }
