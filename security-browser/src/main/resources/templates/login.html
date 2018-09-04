@@ -47,14 +47,14 @@
                     </div>
                     <div>
                         <button class="btn btn-default submit" th:text="#{login.button}" type="submit">Log in</button>
-                        <a class="reset_pass" href="#">Lost your password?</a>
+                        <a class="reset_pass" href="#" th:text="#{login.lost}">Lost your password?</a>
                     </div>
 
                     <div class="clearfix"></div>
 
                     <div class="separator">
-                        <p class="change_link">New to site?
-                            <a href="#signup" class="to_register"> Create Account </a>
+                        <p class="change_link"><span  th:text="#{login.new}">New to site?</span>
+                            <a href="#signup" class="to_register" th:text="#{login.create}"> Create Account </a>
                         </p>
 
                         <div class="clearfix"></div>
@@ -73,25 +73,25 @@
         <div id="register" class="animate form registration_form">
             <section class="login_content">
                 <form>
-                    <h1>Create Account</h1>
+                    <h1 th:text="#{login.create}">Create Account</h1>
                     <div>
-                        <input type="text" class="form-control" placeholder="Username" required=""/>
+                        <input type="text" class="form-control" th:placeholder="#{login.username}" placeholder="Username" required=""/>
                     </div>
                     <div>
-                        <input type="email" class="form-control" placeholder="Email" required=""/>
+                        <input type="email" class="form-control" th:placeholder="#{login.email}" placeholder="Email" required=""/>
                     </div>
                     <div>
-                        <input type="password" class="form-control" placeholder="Password" required=""/>
+                        <input type="password" class="form-control" th:placeholder="#{login.password}" placeholder="Password" required=""/>
                     </div>
                     <div>
-                        <a class="btn btn-default submit" href="index.html">Submit</a>
+                        <a class="btn btn-default submit" href="index.html" th:text="#{login.submit}">Submit</a>
                     </div>
 
                     <div class="clearfix"></div>
 
                     <div class="separator">
-                        <p class="change_link">Already a member ?
-                            <a href="#signin" class="to_register"> Log in </a>
+                        <p class="change_link"><span th:text="#{login.member}">Already a member ?</span>
+                            <a href="#signin" class="to_register" th:text="#{login.button}"> Log in </a>
                         </p>
 
                         <div class="clearfix"></div>
