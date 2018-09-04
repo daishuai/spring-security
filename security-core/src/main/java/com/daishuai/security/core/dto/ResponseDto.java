@@ -1,4 +1,4 @@
-package com.daishuai.security.core.properties;
+package com.daishuai.security.core.dto;
 
 import lombok.Data;
 

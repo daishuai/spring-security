@@ -1,7 +1,7 @@
 package com.daishuai.security.browser.authentication;
 
-import com.daishuai.security.core.properties.JsonUtilForJack2;
-import com.daishuai.security.core.properties.ResponseDto;
+import com.daishuai.security.core.util.JsonUtilForJack2;
+import com.daishuai.security.core.dto.ResponseDto;
 import com.daishuai.security.core.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

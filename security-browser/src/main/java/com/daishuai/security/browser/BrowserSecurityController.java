@@ -1,6 +1,6 @@
 package com.daishuai.security.browser;
 
-import com.daishuai.security.core.properties.ResponseDto;
+import com.daishuai.security.core.dto.ResponseDto;
 import com.daishuai.security.core.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

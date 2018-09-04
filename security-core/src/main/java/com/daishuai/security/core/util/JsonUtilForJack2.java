@@ -1,4 +1,4 @@
-package com.daishuai.security.core.properties;
+package com.daishuai.security.core.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;

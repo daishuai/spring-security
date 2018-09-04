@@ -1,7 +1,10 @@
 package com.daishuai.security.core.validate.code;
 
+import com.daishuai.security.core.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -24,20 +27,22 @@ import java.util.Random;
 @RestController
 public class ValidateCodeController {
 
+    @Autowired
+    private SecurityProperties securityProperties;
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @GetMapping("/code/image")
     public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ImageCode imageCode = this.createImageCode(request);
+        ImageCode imageCode = this.createImageCode(new ServletWebRequest(request));
         sessionStrategy.setAttribute(new ServletWebRequest(request), ValidateCodeConstant.SESSION_KEY, imageCode);
         ImageIO.write(imageCode.getImage(),"JPEG", response.getOutputStream());
     }
 
-    private ImageCode createImageCode(HttpServletRequest request) {
+    private ImageCode createImageCode(ServletWebRequest request) {
 
-        int width = 67;
-        int height = 23;
+        int width = ServletRequestUtils.getIntParameter(request.getRequest(),"with", securityProperties.getCode().getImageCode().getWidth());
+        int height = ServletRequestUtils.getIntParameter(request.getRequest(),"height" ,securityProperties.getCode().getImageCode().getHeight());
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
         Random random = new Random();
@@ -57,7 +62,9 @@ public class ValidateCodeController {
 
         //生成4为随机数
         String sRand = "";
-        for (int i = 0; i < 4; i++){
+        //验证码长度
+        int length = securityProperties.getCode().getImageCode().getLength();
+        for (int i = 0; i < length; i++){
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;
             g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110) ,20 + random.nextInt(110)));
@@ -65,7 +72,9 @@ public class ValidateCodeController {
         }
 
         g.dispose();
-        return new ImageCode(image, sRand, 60);
+        //验证码过期时间
+        int expireIn = securityProperties.getCode().getImageCode().getExpireIn();
+        return new ImageCode(image, sRand, expireIn);
     }
 
 
