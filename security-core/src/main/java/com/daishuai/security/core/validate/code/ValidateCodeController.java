@@ -28,73 +28,16 @@ import java.util.Random;
 public class ValidateCodeController {
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private ValidateCodeGenerator validateCodeGenerator;
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @GetMapping("/code/image")
     public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ImageCode imageCode = this.createImageCode(new ServletWebRequest(request));
+        ImageCode imageCode = validateCodeGenerator.generator(new ServletWebRequest(request));
         sessionStrategy.setAttribute(new ServletWebRequest(request), ValidateCodeConstant.SESSION_KEY, imageCode);
         ImageIO.write(imageCode.getImage(),"JPEG", response.getOutputStream());
     }
 
-    private ImageCode createImageCode(ServletWebRequest request) {
 
-        int width = ServletRequestUtils.getIntParameter(request.getRequest(),"with", securityProperties.getCode().getImageCode().getWidth());
-        int height = ServletRequestUtils.getIntParameter(request.getRequest(),"height" ,securityProperties.getCode().getImageCode().getHeight());
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = image.getGraphics();
-        Random random = new Random();
-
-        g.setColor(this.getRandColor(200, 250));
-        g.fillRect(0,0, width, height);
-        g.setFont(new Font("Times New Roman", Font.ITALIC, 20));
-
-        //生成干扰条纹
-        for (int i = 0; i < 155; i++){
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            int xl = random.nextInt(12);
-            int yl = random.nextInt(12);
-            g.drawLine(x, y, x + xl, y + yl);
-        }
-
-        //生成4为随机数
-        String sRand = "";
-        //验证码长度
-        int length = securityProperties.getCode().getImageCode().getLength();
-        for (int i = 0; i < length; i++){
-            String rand = String.valueOf(random.nextInt(10));
-            sRand += rand;
-            g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110) ,20 + random.nextInt(110)));
-            g.drawString(rand, 13 * i + 6, 16);
-        }
-
-        g.dispose();
-        //验证码过期时间
-        int expireIn = securityProperties.getCode().getImageCode().getExpireIn();
-        return new ImageCode(image, sRand, expireIn);
-    }
-
-
-    /**
-     * 生成随机背景条纹
-     * @param fc
-     * @param bc
-     * @return
-     */
-    private Color getRandColor(int fc, int bc) {
-        Random random = new Random();
-        if (fc > 255){
-            fc = 255;
-        }
-        if (bc > 255){
-            bc = 255;
-        }
-        int red = fc + random.nextInt(bc - fc);
-        int green = fc + random.nextInt(bc - fc);
-        int blue = fc + random.nextInt(bc - fc);
-        return new Color(red, green, blue);
-    }
 }
