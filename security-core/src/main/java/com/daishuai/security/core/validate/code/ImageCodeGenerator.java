@@ -2,9 +2,6 @@ package com.daishuai.security.core.validate.code;
 
 import com.daishuai.security.core.properties.SecurityProperties;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
