@@ -10,16 +10,27 @@
     <title>登陆</title>
 
     <!-- Bootstrap -->
-    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" href="../resources/vendors/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" href="../resources/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
+    <link th:href="@{/vendors/nprogress/nprogress.css}" href="../resources/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link th:href="@{/vendors/animate.css/animate.min.css}" rel="stylesheet">
-
+    <link th:href="@{/vendors/animate.css/animate.min.css}" href="../resources/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link th:href="@{/vendors/iCheck/skins/flat/green.css}" href="../resources/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link th:href="@{/vendors/google-code-prettify/bin/prettify.min.css}" href="../resources/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link th:href="@{/vendors/select2/dist/css/select2.min.css}" href="../resources/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link th:href="@{/vendors/switchery/dist/switchery.min.css}" href="../resources/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link th:href="@{/vendors/starrr/dist/starrr.css}" href="../resources/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" href="../resources/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+    <link th:href="@{/build/css/custom.min.css}" href="../resources/build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="login">
@@ -43,7 +54,12 @@
                     <div>
                         <input type="text" class="form-control" placeholder="ValidateCode"
                                th:placeholder="#{login.imageCode}" required="" name="imageCode"/>
-                        <img src="/code/image" th:src="@{/code/image}"/>
+                        <img th:src="@{/code/image}"/>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="flat" name="remember-me"> [[#{login.rememberMe}]]
+                        </label>
                     </div>
                     <div>
                         <button class="btn btn-default submit" th:text="#{login.button}" type="submit">Log in</button>
@@ -108,5 +124,47 @@
         </div>
     </div>
 </div>
+<!-- jQuery -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}" src="../resources/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}" src="../resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script th:src="@{/vendors/fastclick/lib/fastclick.js}" src="../resources/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/nprogress/nprogress.js}" src="../resources/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}" src="../resources/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}" src="../resources/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}" src="../resources/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script th:src="@{/vendors/iCheck/icheck.min.js}" src="../resources/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script th:src="@{/vendors/skycons/skycons.js}" src="../resources/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script th:src="@{/vendors/Flot/jquery.flot.js}" src="../resources/vendors/Flot/jquery.flot.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.pie.js}" src="../resources/vendors/Flot/jquery.flot.pie.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.time.js}" src="../resources/vendors/Flot/jquery.flot.time.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.stack.js}" src="../resources/vendors/Flot/jquery.flot.stack.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.resize.js}" src="../resources/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}" src="../resources/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}" src="../resources/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}" src="../resources/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script th:src="@{/vendors/DateJS/build/date.js}" src="../resources/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}" src="../resources/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}" src="../resources/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}" src="../resources/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script th:src="@{/vendors/moment/min/moment.min.js}" src="../resources/vendors/moment/min/moment.min.js"></script>
+<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}" src="../resources/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Switchery -->
+<script th:src="@{/vendors/switchery/dist/switchery.min.js}" src="../resources/vendors/switchery/dist/switchery.min.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}" src="../resources/build/js/custom.min.js"></script>
 </body>
 </html>

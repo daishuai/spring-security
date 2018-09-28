@@ -16,4 +16,6 @@ public class BrowserProperties {
 
     private String loginType = "JSON";
 
+    private int rememberMeSeconds = 60 * 60;
+
 }
