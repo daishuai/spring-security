@@ -621,7 +621,7 @@ Date.CultureStrings.lang = "ar-KW";
 	if (typeof window !== "undefined" && typeof window.console !== "undefined" && typeof window.console.log !== "undefined") {
 		$D.console = console; // used only to raise non-critical errors if available
 	} else {
-		// set mock so we don't give errors.
+		// set wiremock so we don't give errors.
 		$D.console = {
 			log: function(){},
 			error: function(){}
