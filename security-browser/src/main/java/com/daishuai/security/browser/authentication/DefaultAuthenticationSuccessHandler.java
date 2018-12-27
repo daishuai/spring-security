@@ -1,5 +1,6 @@
 package com.daishuai.security.browser.authentication;
 
+import com.daishuai.security.core.properties.LoginType;
 import com.daishuai.security.core.util.JsonUtilForJack2;
 import com.daishuai.security.core.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: java类作用描述
+ * @Description: 自定义认定成功处理器
  * @Author: daishuai
  * @CreateDate: 2018/9/1 22:07
  * @Version: 1.0
@@ -32,7 +33,7 @@ public class DefaultAuthenticationSuccessHandler extends SavedRequestAwareAuthen
 
         log.info("登陆成功");
 
-        if ("JSON".equals(securityProperties.getBrowser().getLoginType())){
+        if (LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
             log.info("登陆方式：JSON");
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(JsonUtilForJack2.beanToJson(authentication));
