@@ -14,11 +14,30 @@ public class ResponseDto {
 
     private String code;
 
-    private Object body;
+    private String message;
 
-    public ResponseDto(String code, Object body){
+    private Object data;
+
+    public ResponseDto() {
+
+    }
+
+    public ResponseDto(String code, String message, Object data){
         this.code = code;
-        this.setBody(body);
+        this.message = message;
+        this.data = data;
+    }
+
+    public static ResponseDto successResponseDto(Object data) {
+        return new ResponseDto("0000", "处理成功", data);
+    }
+
+    public static ResponseDto successResponseDto(String message, Object data) {
+        return new ResponseDto("0000", message, data);
+    }
+
+    public static ResponseDto errorResponseDto(String code, String message) {
+        return new ResponseDto(code, message, null);
     }
 
 }

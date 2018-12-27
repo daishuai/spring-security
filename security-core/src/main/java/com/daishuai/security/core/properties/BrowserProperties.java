@@ -12,10 +12,19 @@ import lombok.Data;
 @Data
 public class BrowserProperties {
 
-    private String loginPage = "/login.html";
+    private String loginPage = "/default-login.html";
 
-    private String loginType = "JSON";
+    private String signUpUrl = "/default-signUp.html";
 
+    private LoginType loginType = LoginType.JSON;
+
+    private String resourceUrl = "";
+
+    /**
+     * 记住我有效期
+     */
     private int rememberMeSeconds = 60 * 60;
+
+    private SessionProperties session = new SessionProperties();
 
 }

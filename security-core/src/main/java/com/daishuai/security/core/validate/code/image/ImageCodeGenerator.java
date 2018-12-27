@@ -1,6 +1,7 @@
-package com.daishuai.security.core.validate.code;
+package com.daishuai.security.core.validate.code.image;
 
 import com.daishuai.security.core.properties.SecurityProperties;
+import com.daishuai.security.core.validate.code.ValidateCodeGenerator;
 import lombok.Data;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -10,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
- * @Description: java类作用描述
+ * @Description: 验证码生成器
  * @Author: daishuai
  * @CreateDate: 2018/9/7 11:33
  * @Version: 1.0
@@ -23,9 +24,9 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
 
     @Override
     public ImageCode generator(ServletWebRequest request) {
-
-        int width = ServletRequestUtils.getIntParameter(request.getRequest(),"with", securityProperties.getCode().getImageCode().getWidth());
-        int height = ServletRequestUtils.getIntParameter(request.getRequest(),"height" ,securityProperties.getCode().getImageCode().getHeight());
+        //先从request请求中获取，没有就从配置中取
+        int width = ServletRequestUtils.getIntParameter(request.getRequest(),"width", securityProperties.getCode().getImage().getWidth());
+        int height = ServletRequestUtils.getIntParameter(request.getRequest(),"height" ,securityProperties.getCode().getImage().getHeight());
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
         Random random = new Random();
@@ -46,7 +47,7 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
         //生成4为随机数
         String sRand = "";
         //验证码长度
-        int length = securityProperties.getCode().getImageCode().getLength();
+        int length = securityProperties.getCode().getImage().getLength();
         for (int i = 0; i < length; i++){
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;
@@ -56,7 +57,7 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
 
         g.dispose();
         //验证码过期时间
-        int expireIn = securityProperties.getCode().getImageCode().getExpireIn();
+        int expireIn = securityProperties.getCode().getImage().getExpireIn();
         return new ImageCode(image, sRand, expireIn);
     }
 
