@@ -784,7 +784,7 @@ KeyTable.defaults = {
 	focus: null,
 
 	/**
-	 * Array of keys to listen for
+	 * Array of keys to listener for
 	 * @type {null|array}
 	 */
 	keys: null,
