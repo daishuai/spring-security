@@ -360,7 +360,7 @@ $.extend( Buttons.prototype, {
 			that.destroy();
 		} );
 
-		// Global key event binding to listen for button keys
+		// Global key event binding to listener for button keys
 		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
 			if ( ! document.activeElement || document.activeElement === document.body ) {
 				// SUse a string of characters for fast lookup of if we need to
