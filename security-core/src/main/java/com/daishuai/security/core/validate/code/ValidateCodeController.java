@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: 校验码控制器
+ * @Description: 生成校验码的请求处理器
  * @Author: daishuai
  * @CreateDate: 2018/9/3 18:57
  * @Version: 1.0

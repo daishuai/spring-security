@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.Filter;
 
 /**
- * @Description: java类作用描述
+ * @Description: 校验码相关安全配置
  * @Author: daishuai
  * @CreateDate: 2018/12/20 18:14
  * @Version: 1.0

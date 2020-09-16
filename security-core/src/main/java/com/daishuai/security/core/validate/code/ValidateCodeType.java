@@ -3,7 +3,7 @@ package com.daishuai.security.core.validate.code;
 import com.daishuai.security.core.properties.SecurityConstants;
 
 /**
- * @Description: java类作用描述
+ * @Description: 校验码类型
  * @Author: daishuai
  * @CreateDate: 2018/12/19 20:52
  * @Version: 1.0

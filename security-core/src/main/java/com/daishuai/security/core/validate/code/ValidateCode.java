@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @Description: 验证码
+ * @Description: 验证码信息封装类
  * @Author: daishuai
  * @CreateDate: 2018/12/19 19:34
  * @Version: 1.0

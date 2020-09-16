@@ -1,4 +1,4 @@
-package com.daishuai.security.browser;
+package com.daishuai.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +17,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * 通过手机号查询用户
+     * @param mobile
+     * @return
+     */
+    User findByMobile(String mobile);
 }
