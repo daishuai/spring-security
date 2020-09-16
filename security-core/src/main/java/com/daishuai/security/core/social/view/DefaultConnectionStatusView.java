@@ -1,4 +1,4 @@
-package com.daishuai.security.core.social;
+package com.daishuai.security.core.social.view;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description: java类作用描述
+ * @Description: 社交账号绑定状态视图
  * @Author: daishuai
  * @CreateDate: 2018/12/21 16:27
  * @Version: 1.0

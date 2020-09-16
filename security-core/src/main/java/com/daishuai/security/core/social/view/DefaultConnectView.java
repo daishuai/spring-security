@@ -1,4 +1,4 @@
-package com.daishuai.security.core.social;
+package com.daishuai.security.core.social.view;
 
 import org.springframework.web.servlet.view.AbstractView;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * @Description: java类作用描述
+ * @Description: 绑定结果视图
  * @Author: daishuai
  * @CreateDate: 2018/12/21 16:40
  * @Version: 1.0
@@ -17,7 +17,7 @@ public class DefaultConnectView extends AbstractView {
     @Override
     protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType("text/html;charset=UTF-8");
-        if (model.get("connection") == null) {
+        if (model.get("connections") == null) {
             response.getWriter().write("<h3>解绑成功</h3>");
             return;
         }

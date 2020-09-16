@@ -1,5 +1,6 @@
 package com.daishuai.security.browser.session;
 
+import com.daishuai.security.core.properties.SecurityProperties;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: java类作用描述
+ * @Description: 并发登录导致session失效时，默认的处理策略
  * @Author: daishuai
  * @CreateDate: 2018/12/23 19:20
  * @Version: 1.0
@@ -16,8 +17,8 @@ import java.io.IOException;
  */
 public class DefaultExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
 
-    public DefaultExpiredSessionStrategy(String invalidSessionUrl) {
-        super(invalidSessionUrl);
+    public DefaultExpiredSessionStrategy(SecurityProperties securityProperties) {
+        super(securityProperties);
     }
 
     @Override

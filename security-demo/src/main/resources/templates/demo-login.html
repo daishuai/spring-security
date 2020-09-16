@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>登陆</title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" href="../resources/vendors/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" href="../resources/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" href="../resources/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link th:href="@{/vendors/animate.css/animate.min.css}" href="../resources/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link th:href="@{/vendors/iCheck/skins/flat/green.css}" href="../resources/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link th:href="@{/vendors/google-code-prettify/bin/prettify.min.css}" href="../resources/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link th:href="@{/vendors/select2/dist/css/select2.min.css}" href="../resources/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link th:href="@{/vendors/switchery/dist/switchery.min.css}" href="../resources/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link th:href="@{/vendors/starrr/dist/starrr.css}" href="../resources/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" href="../resources/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" href="../resources/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="login">
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form method="post" th:action="@{/authentication/form}">
+                    <h1 th:text="#{login.title}">Login Form</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Username"
+                               th:placeholder="#{login.username}" required="" name="username"/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Password"
+                               th:placeholder="#{login.password}" required="" name="password"/>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="ValidateCode"
+                               th:placeholder="#{login.imageCode}" required="" name="imageCode"/>
+                        <img th:src="@{/code/image}"/>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="flat" name="remember-me"> [[#{login.rememberMe}]]
+                        </label>
+                    </div>
+                    <div>
+                        <button class="btn btn-default submit" th:text="#{login.button}" type="submit">Log in</button>
+                        <a class="reset_pass" href="#" th:text="#{login.lost}">Lost your password?</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link"><span  th:text="#{login.new}">New to site?</span>
+                            <a href="#signup" class="to_register" th:text="#{login.create}"> Create Account </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br/>
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                Terms</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <form>
+                    <h1 th:text="#{login.create}">Create Account</h1>
+                    <div>
+                        <input type="text" class="form-control" th:placeholder="#{login.username}" placeholder="Username" required=""/>
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" th:placeholder="#{login.email}" placeholder="Email" required=""/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" th:placeholder="#{login.password}" placeholder="Password" required=""/>
+                    </div>
+                    <div>
+                        <a class="btn btn-default submit" href="index.html" th:text="#{login.submit}">Submit</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link"><span th:text="#{login.member}">Already a member ?</span>
+                            <a href="#signin" class="to_register" th:text="#{login.button}"> Log in </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br/>
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                Terms</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}" src="../resources/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}" src="../resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script th:src="@{/vendors/fastclick/lib/fastclick.js}" src="../resources/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/nprogress/nprogress.js}" src="../resources/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}" src="../resources/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}" src="../resources/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}" src="../resources/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script th:src="@{/vendors/iCheck/icheck.min.js}" src="../resources/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script th:src="@{/vendors/skycons/skycons.js}" src="../resources/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script th:src="@{/vendors/Flot/jquery.flot.js}" src="../resources/vendors/Flot/jquery.flot.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.pie.js}" src="../resources/vendors/Flot/jquery.flot.pie.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.time.js}" src="../resources/vendors/Flot/jquery.flot.time.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.stack.js}" src="../resources/vendors/Flot/jquery.flot.stack.js"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.resize.js}" src="../resources/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}" src="../resources/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}" src="../resources/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}" src="../resources/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script th:src="@{/vendors/DateJS/build/date.js}" src="../resources/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}" src="../resources/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}" src="../resources/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}" src="../resources/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script th:src="@{/vendors/moment/min/moment.min.js}" src="../resources/vendors/moment/min/moment.min.js"></script>
+<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}" src="../resources/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Switchery -->
+<script th:src="@{/vendors/switchery/dist/switchery.min.js}" src="../resources/vendors/switchery/dist/switchery.min.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}" src="../resources/build/js/custom.min.js"></script>
+</body>
+</html>

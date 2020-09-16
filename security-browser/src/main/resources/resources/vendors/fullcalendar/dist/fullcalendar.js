@@ -2601,7 +2601,7 @@ var DragListener = FC.DragListener = Class.extend(ListenerMixin, MouseIgnorerMix
 				}
 			});
 
-			// listen to ALL scroll actions on the page
+			// listener to ALL scroll actions on the page
 			if (
 				!bindAnyScroll(this.handleTouchScrollProxy) && // hopefully this works and short-circuits the rest
 				this.scrollEl // otherwise, attach a single handler to this
@@ -3769,8 +3769,8 @@ var Grid = FC.Grid = Class.extend(ListenerMixin, MouseIgnorerMixin, {
 	// TODO: should probably move this to Grid.events, like we did event dragging / resizing
 
 
-	// Renders a mock event at the given event location, which contains zoned start/end properties.
-	// Returns all mock event elements.
+	// Renders a wiremock event at the given event location, which contains zoned start/end properties.
+	// Returns all wiremock event elements.
 	renderEventLocationHelper: function(eventLocation, sourceSeg) {
 		var fakeEvent = this.fabricateHelperEvent(eventLocation, sourceSeg);
 
@@ -3779,7 +3779,7 @@ var Grid = FC.Grid = Class.extend(ListenerMixin, MouseIgnorerMixin, {
 
 
 	// Builds a fake event given zoned event date properties and a segment is should be inspired from.
-	// The range's end can be null, in which case the mock event that is rendered will have a null end time.
+	// The range's end can be null, in which case the wiremock event that is rendered will have a null end time.
 	// `sourceSeg` is the internal segment object involved in the drag. If null, something external is dragging.
 	fabricateHelperEvent: function(eventLocation, sourceSeg) {
 		var fakeEvent = sourceSeg ? createObject(sourceSeg.event) : {}; // mask the original event object if possible
@@ -3789,7 +3789,7 @@ var Grid = FC.Grid = Class.extend(ListenerMixin, MouseIgnorerMixin, {
 		fakeEvent.allDay = null; // force it to be freshly computed by normalizeEventDates
 		this.view.calendar.normalizeEventDates(fakeEvent);
 
-		// this extra className will be useful for differentiating real events from mock events in CSS
+		// this extra className will be useful for differentiating real events from wiremock events in CSS
 		fakeEvent.className = (fakeEvent.className || []).concat('fc-helper');
 
 		// if something external is being dragged in, don't render a resizer
@@ -3801,14 +3801,14 @@ var Grid = FC.Grid = Class.extend(ListenerMixin, MouseIgnorerMixin, {
 	},
 
 
-	// Renders a mock event. Given zoned event date properties.
-	// Must return all mock event elements.
+	// Renders a wiremock event. Given zoned event date properties.
+	// Must return all wiremock event elements.
 	renderHelper: function(eventLocation, sourceSeg) {
 		// subclasses must implement
 	},
 
 
-	// Unrenders a mock event
+	// Unrenders a wiremock event
 	unrenderHelper: function() {
 		// subclasses must implement
 	},
@@ -4319,7 +4319,7 @@ Grid.mixin({
 	// Updates internal state and triggers handlers for when an event element is moused out.
 	// Can be given no arguments, in which case it will mouseout the segment that was previously moused over.
 	handleSegMouseout: function(seg, ev) {
-		ev = ev || {}; // if given no args, make a mock mouse event
+		ev = ev || {}; // if given no args, make a wiremock mouse event
 
 		if (this.mousedOverSeg) {
 			seg = seg || this.mousedOverSeg; // if given no args, use the currently moused-over segment
@@ -4479,7 +4479,7 @@ Grid.mixin({
 						_this.applyDragOpacity(dragHelperEls);
 					}
 
-					mouseFollower.hide(); // if the subclass is already using a mock event "helper", hide our own
+					mouseFollower.hide(); // if the subclass is already using a wiremock event "helper", hide our own
 				}
 				else {
 					mouseFollower.show(); // otherwise, have the helper follow the mouse (no snapping)
@@ -4632,7 +4632,7 @@ Grid.mixin({
 		var el;
 		var accept;
 
-		if (view.opt('droppable')) { // only listen if this setting is on
+		if (view.opt('droppable')) { // only listener if this setting is on
 			el = $((ui ? ui.item : null) || ev.target);
 
 			// Test that the dragged element passes the dropAccept selector or filter function.
@@ -4730,7 +4730,7 @@ Grid.mixin({
 	// `dropLocation` contains hypothetical start/end/allDay values the event would have if dropped. end can be null.
 	// `seg` is the internal segment object that is being dragged. If dragging an external element, `seg` is null.
 	// A truthy returned value indicates this method has rendered a helper element.
-	// Must return elements used for any mock events.
+	// Must return elements used for any wiremock events.
 	renderDrag: function(dropLocation, seg) {
 		// subclasses must implement
 	},
@@ -4898,7 +4898,7 @@ Grid.mixin({
 
 	// Renders a visual indication of an event being resized.
 	// `range` has the updated dates of the event. `seg` is the original segment object involved in the drag.
-	// Must return elements used for any mock events.
+	// Must return elements used for any wiremock events.
 	renderEventResize: function(range, seg) {
 		// subclasses must implement
 	},
@@ -5756,7 +5756,7 @@ var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 
 	rowEls: null, // set of fake row elements
 	cellEls: null, // set of whole-day elements comprising the row's background
-	helperEls: null, // set of cell skeleton elements for rendering the mock event "helper"
+	helperEls: null, // set of cell skeleton elements for rendering the wiremock event "helper"
 
 	rowCoordCache: null,
 	colCoordCache: null,
@@ -6058,7 +6058,7 @@ var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 
 		// if a segment from the same calendar but another component is being dragged, render a helper event
 		if (seg && seg.component !== this) {
-			return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
+			return this.renderEventLocationHelper(eventLocation, seg); // returns wiremock event elements
 		}
 	},
 
@@ -6077,7 +6077,7 @@ var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 	// Renders a visual indication of an event being resized
 	renderEventResize: function(eventLocation, seg) {
 		this.renderHighlight(this.eventToSpan(eventLocation));
-		return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
+		return this.renderEventLocationHelper(eventLocation, seg); // returns wiremock event elements
 	},
 
 
@@ -6092,7 +6092,7 @@ var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders a mock "helper" event. `sourceSeg` is the associated internal segment object. It can be null.
+	// Renders a wiremock "helper" event. `sourceSeg` is the associated internal segment object. It can be null.
 	renderHelper: function(event, sourceSeg) {
 		var helperNodes = [];
 		var segs = this.eventToSegs(event);
@@ -6129,7 +6129,7 @@ var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 	},
 
 
-	// Unrenders any visual indication of a mock helper event
+	// Unrenders any visual indication of a wiremock helper event
 	unrenderHelper: function() {
 		if (this.helperEls) {
 			this.helperEls.remove();
@@ -7274,12 +7274,12 @@ var TimeGrid = FC.TimeGrid = Grid.extend(DayTableMixin, {
 
 
 	// Renders a visual indication of an event being dragged over the specified date(s).
-	// A returned value of `true` signals that a mock "helper" event has been rendered.
+	// A returned value of `true` signals that a wiremock "helper" event has been rendered.
 	renderDrag: function(eventLocation, seg) {
 
 		if (seg) { // if there is event information for this drag, render a helper event
 
-			// returns mock event elements
+			// returns wiremock event elements
 			// signal that a helper has been rendered
 			return this.renderEventLocationHelper(eventLocation, seg);
 		}
@@ -7303,7 +7303,7 @@ var TimeGrid = FC.TimeGrid = Grid.extend(DayTableMixin, {
 
 	// Renders a visual indication of an event being resized
 	renderEventResize: function(eventLocation, seg) {
-		return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
+		return this.renderEventLocationHelper(eventLocation, seg); // returns wiremock event elements
 	},
 
 
@@ -7317,13 +7317,13 @@ var TimeGrid = FC.TimeGrid = Grid.extend(DayTableMixin, {
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders a mock "helper" event. `sourceSeg` is the original segment object and might be null (an external drag)
+	// Renders a wiremock "helper" event. `sourceSeg` is the original segment object and might be null (an external drag)
 	renderHelper: function(event, sourceSeg) {
-		return this.renderHelperSegs(this.eventToSegs(event), sourceSeg); // returns mock event elements
+		return this.renderHelperSegs(this.eventToSegs(event), sourceSeg); // returns wiremock event elements
 	},
 
 
-	// Unrenders any mock helper event
+	// Unrenders any wiremock helper event
 	unrenderHelper: function() {
 		this.unrenderHelperSegs();
 	},
@@ -7394,7 +7394,7 @@ var TimeGrid = FC.TimeGrid = Grid.extend(DayTableMixin, {
 
 	// Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
 	renderSelection: function(span) {
-		if (this.view.opt('selectHelper')) { // this setting signals that a mock helper event should be rendered
+		if (this.view.opt('selectHelper')) { // this setting signals that a wiremock helper event should be rendered
 
 			// normally acceps an eventLocation, span has a start/end, which is good enough
 			this.renderEventLocationHelper(span);
@@ -9217,7 +9217,7 @@ var View = FC.View = Class.extend(EmitterMixin, ListenerMixin, {
 
 	// Renders a visual indication of a event or external-element drag over the given drop zone.
 	// If an external-element, seg will be `null`.
-	// Must return elements used for any mock events.
+	// Must return elements used for any wiremock events.
 	renderDrag: function(dropLocation, seg) {
 		// subclasses must implement
 	},
@@ -10502,7 +10502,7 @@ function Calendar_constructor(element, overrides) {
 		});
 
 		// called immediately, and upon option change.
-		// HACK: locale often affects isRTL, so we explicitly listen to that too.
+		// HACK: locale often affects isRTL, so we explicitly listener to that too.
 		t.bindOptions([ 'isRTL', 'locale' ], function(isRTL) {
 			element.toggleClass('fc-ltr', !isRTL);
 			element.toggleClass('fc-rtl', isRTL);
@@ -13152,7 +13152,7 @@ var BasicView = FC.BasicView = View.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// A returned value of `true` signals that a mock "helper" event has been rendered.
+	// A returned value of `true` signals that a wiremock "helper" event has been rendered.
 	renderDrag: function(dropLocation, seg) {
 		return this.dayGrid.renderDrag(dropLocation, seg);
 	},
@@ -13721,7 +13721,7 @@ var AgendaView = FC.AgendaView = View.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// A returned value of `true` signals that a mock "helper" event has been rendered.
+	// A returned value of `true` signals that a wiremock "helper" event has been rendered.
 	renderDrag: function(dropLocation, seg) {
 		if (dropLocation.start.hasTime()) {
 			return this.timeGrid.renderDrag(dropLocation, seg);

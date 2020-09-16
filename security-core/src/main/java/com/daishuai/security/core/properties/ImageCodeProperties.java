@@ -3,7 +3,7 @@ package com.daishuai.security.core.properties;
 import lombok.Data;
 
 /**
- * @Description: java类作用描述
+ * @Description: 图片验证码配置项
  * @Author: daishuai
  * @CreateDate: 2018/9/4 9:06
  * @Version: 1.0

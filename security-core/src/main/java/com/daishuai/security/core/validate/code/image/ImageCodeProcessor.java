@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ImageCode> {
 
     /**
-     * 发送图片验证码，将其谢翱相应中
+     * 发送图片验证码，将其写到响应中
      * @param request
      * @param imageCode
      * @throws Exception

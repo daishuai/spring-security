@@ -1,7 +1,7 @@
 package com.daishuai.handler;
 
 import com.daishuai.exception.UserNotExistException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
@@ -14,7 +14,8 @@ import java.util.Map;
  * @Version: 1.0
  * Copyright: Copyright (c) 2018
  */
-@ControllerAdvice
+@Slf4j
+//@ControllerAdvice
 public class GlobalExceptionHandler {
 
 
@@ -23,5 +24,11 @@ public class GlobalExceptionHandler {
         Map<String, Object> map = new HashMap<>();
 
         return map;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public void handleException(Exception e) {
+        log.info("全局异常处理器");
+        e.printStackTrace();
     }
 }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 
 /**
- * @Description: java类作用描述
+ * @Description: 图形验证码
  * @Author: daishuai
  * @CreateDate: 2018/12/19 21:27
  * @Version: 1.0

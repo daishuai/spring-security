@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+
+<body class="login">
+
+    <div>
+        <div>
+            <section class="login_content">
+                <!--用户名登陆-->
+                <form method="post" action="/authentication/form">
+                    <h1>用户名登陆</h1>
+                    <div>
+                        <input type="text" placeholder="用户名" name="username"/>
+                    </div>
+                    <div>
+                        <input type="password" placeholder="密码" name="password"/>
+                    </div>
+                    <div>
+                        <input type="text"  placeholder="验证码" name="imageCode"/>
+                        <img src="/code/image"/>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember-me"> 记住我
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit">登陆</button>
+                    </div>
+                </form>
+
+                <!--手机号登陆-->
+                <form method="post" action="/authentication/mobile">
+                    <h1>手机号登陆</h1>
+                    <div>
+                        <input type="text" placeholder="mobile" name="mobile" value="13412345678"/>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="手机验证码" name="smsCode"/>
+                    </div>
+                    <div>
+                        <a href="/code/sms?mobile=13412345678">获取手机验证码</a>
+                    </div>
+                    <div>
+                        <button type="submit">登陆</button>
+                    </div>
+                </form>
+
+                <div>
+
+                    <a href="/qqLogin/qq">QQ登陆</a>
+                    <br>
+                    <a href="/qqLogin/weixin">微信登陆</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>

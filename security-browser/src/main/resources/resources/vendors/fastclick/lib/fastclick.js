@@ -17,7 +17,7 @@
 	 * Instantiate fast-clicking listeners on the specified layer.
 	 *
 	 * @constructor
-	 * @param {Element} layer The layer to listen on
+	 * @param {Element} layer The layer to listener on
 	 * @param {Object} [options={}] The options to override the defaults
 	 */
 	function FastClick(layer, options) {
@@ -729,7 +729,7 @@
 	/**
 	 * Check whether FastClick is needed.
 	 *
-	 * @param {Element} layer The layer to listen on
+	 * @param {Element} layer The layer to listener on
 	 */
 	FastClick.notNeeded = function(layer) {
 		var metaViewport;
@@ -818,7 +818,7 @@
 	/**
 	 * Factory method for creating a FastClick object
 	 *
-	 * @param {Element} layer The layer to listen on
+	 * @param {Element} layer The layer to listener on
 	 * @param {Object} [options={}] The options to override the defaults
 	 */
 	FastClick.attach = function(layer, options) {
