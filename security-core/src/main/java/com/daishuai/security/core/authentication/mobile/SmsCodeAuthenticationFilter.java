@@ -1,16 +1,18 @@
 package com.daishuai.security.core.authentication.mobile;
 
+import com.daishuai.security.core.properties.SecurityConstants;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Description: java类作用描述
+ * @Description: 短信登录过滤器
  * @Author: daishuai
  * @CreateDate: 2018/12/19 22:12
  * @Version: 1.0
@@ -21,16 +23,14 @@ public class SmsCodeAuthenticationFilter extends
     // ~ Static fields/initializers
     // =====================================================================================
 
-    public static final String SPRING_SECURITY_FORM_MOBILE_KEY = "mobile";
-
-    private String mobileParameter = SPRING_SECURITY_FORM_MOBILE_KEY;
+    private String mobileParameter = SecurityConstants.DEFAULT_PARAMETER_NAME_MOBILE;
     private boolean postOnly = true;
 
     // ~ Constructors
     // ===================================================================================================
 
     public SmsCodeAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/authentication/mobile", "POST"));
+        super(new AntPathRequestMatcher(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE, "POST"));
     }
 
     // ~ Methods
@@ -98,4 +98,8 @@ public class SmsCodeAuthenticationFilter extends
         this.postOnly = postOnly;
     }
 
+    public void setMobileParameter(String mobileParameter) {
+        Assert.hasText(mobileParameter, "Mobile parameter must not be empty or null");
+        this.mobileParameter = mobileParameter;
+    }
 }

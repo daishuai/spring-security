@@ -9,7 +9,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**
- * @Description: java类作用描述
+ * @Description: 短信验证码处理器
  * @Author: daishuai
  * @CreateDate: 2018/12/19 21:22
  * @Version: 1.0

@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * @Description: java类作用描述
+ * @Description: 短信登录验证信息封装类
  * @Author: daishuai
  * @CreateDate: 2018/12/19 22:04
  * @Version: 1.0

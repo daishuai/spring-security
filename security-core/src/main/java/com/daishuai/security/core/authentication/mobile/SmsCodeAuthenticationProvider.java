@@ -9,7 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * @Description: java类作用描述
+ * @Description: 短信登录验证逻辑
+ * 由于短信验证码的验证在过滤器里已完成，这里直接读取用户信息即可。
  * @Author: daishuai
  * @CreateDate: 2018/12/19 22:29
  * @Version: 1.0
