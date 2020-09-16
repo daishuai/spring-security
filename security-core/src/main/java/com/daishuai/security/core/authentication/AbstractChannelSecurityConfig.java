@@ -8,12 +8,13 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
- * @Description: java类作用描述
+ * @Description: 表单登陆配置 {@link FormAuthenticationConfig}
  * @Author: daishuai
  * @CreateDate: 2018/12/20 18:07
  * @Version: 1.0
  * Copyright: Copyright (c) 2018
  */
+@Deprecated
 public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

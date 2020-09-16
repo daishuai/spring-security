@@ -1,6 +1,7 @@
 package com.daishuai.security.browser.session;
 
 import com.daishuai.security.core.dto.ResponseDto;
+import com.daishuai.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: java类作用描述
+ * @Description: 抽象的session失效处理器
  * @Author: daishuai
  * @CreateDate: 2018/12/23 20:25
  * @Version: 1.0
@@ -29,6 +30,9 @@ public class AbstractSessionStrategy {
      */
     private String destinationUrl;
 
+
+    private SecurityProperties securityProperties;
+
     /**
      * 重定向策略
      */
@@ -41,20 +45,32 @@ public class AbstractSessionStrategy {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public AbstractSessionStrategy(String invalidSessionUrl) {
+    public AbstractSessionStrategy(SecurityProperties securityProperties) {
+        String invalidSessionUrl = securityProperties.getBrowser().getSession().getSessionInvalidUrl();
         Assert.isTrue(UrlUtils.isValidRedirectUrl(invalidSessionUrl), "url must start with '/' or with 'http(s)'");
+        Assert.isTrue(StringUtils.endsWithIgnoreCase(invalidSessionUrl, ".html"), "url must be end with '.html'");
         this.destinationUrl = invalidSessionUrl;
+        this.securityProperties = securityProperties;
     }
 
     protected void onsessionInvalid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("session失效");
         if (createNewSession) {
             request.getSession();
         }
         String sourceUrl = request.getRequestURI();
+        String targetUrl;
         log.info("请求的url是：{}", sourceUrl);
         if (StringUtils.endsWithIgnoreCase(sourceUrl, ".html")) {
-            log.info("session失效，跳转到{}", destinationUrl);
-            redirectStrategy.sendRedirect(request, response, destinationUrl);
+
+            if (StringUtils.equals(sourceUrl, securityProperties.getBrowser().getLoginPage())
+                    || StringUtils.equals(sourceUrl, securityProperties.getBrowser().getSignOutUrl())) {
+                targetUrl = sourceUrl;
+            } else {
+                targetUrl = destinationUrl;
+            }
+            log.info("session失效，跳转到{}", targetUrl);
+            redirectStrategy.sendRedirect(request, response, targetUrl);
         } else {
             String message = "session失效";
             if (isConcurrency()) {

@@ -1,8 +1,10 @@
 package com.daishuai.security.browser;
 
-import com.daishuai.security.browser.support.SocialUserInfo;
+import com.daishuai.security.core.dto.SocialUserInfo;
 import com.daishuai.security.core.dto.ResponseDto;
+import com.daishuai.security.core.properties.SecurityConstants;
 import com.daishuai.security.core.properties.SecurityProperties;
+import com.daishuai.security.core.social.SocialController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: java类作用描述
+ * @Description: 浏览器环境下与安全相关的服务
  * @Author: daishuai
  * @CreateDate: 2018/9/1 19:36
  * @Version: 1.0
@@ -33,7 +35,7 @@ import java.io.IOException;
  */
 @RestController
 @Slf4j
-public class BrowserSecurityController {
+public class BrowserSecurityController extends SocialController {
 
     /**
      * HttpSessionRequestCache把当前请求缓存到session里
@@ -54,7 +56,7 @@ public class BrowserSecurityController {
      * @param response
      * @return
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResponseDto requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取引发跳转的请求
@@ -72,22 +74,16 @@ public class BrowserSecurityController {
     }
 
 
-    @GetMapping("/social/user")
+    /**
+     * 用户第一次社交登录时，会引导用户进行用户注册或绑定，此服务用于在注册或绑定页面获取社交网站用户信息
+     * @param request
+     * @return
+     */
+    @GetMapping(SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL)
     public SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
-        SocialUserInfo userInfo = new SocialUserInfo();
         Connection<?> connection = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(request));
-        userInfo.setProviderId(connection.getKey().getProviderId());
-        userInfo.setProviderUserId(connection.getKey().getProviderUserId());
-        userInfo.setNickname(connection.getDisplayName());
-        userInfo.setHeadimg(connection.getProfileUrl());
-        return userInfo;
-    }
 
-    @GetMapping("/session/invalid")
-    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public ResponseDto sessionInvalid() {
-        String message = "session失效";
-        return ResponseDto.errorResponseDto("401", message);
+        return buildSocialUserInfo(connection);
     }
 
 }

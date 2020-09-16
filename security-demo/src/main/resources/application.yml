@@ -1,22 +1,32 @@
+virtual-machine:
+  #ip: 172.20.10.8
+  #ip: 192.168.31.194
+  #ip: 141.73.23.94
+  ip: localhost
+
 server:
-  port: 7878
+  port: 8081
+  session:
+    timeout: 1000 #单位秒，默认最少1分钟 @link TomcatEmbeddedServletContainerFactory.configureSession()方法
 spring:
   application:
     name: spring-security
   #数据库连接配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.192:3306/springboot?useSSL=false
+    url: jdbc:mysql://${virtual-machine.ip}:3306/springboot?useSSL=false
     username: root
     password: root
   #redis配置
   redis:
-    host: 192.168.1.192 #默认值：localhost
+    host: ${virtual-machine.ip} #默认值：localhost
     port: 6379  #默认值：6379
   rabbitmq:
-    host: 192.168.1.192   #默认值：localhost
+    host: ${virtual-machine.ip}   #默认值：localhost
     port: 5672            #默认值：5672
     virtual-host: /       #默认值：/
+    username: guest
+    password: guest
   jpa:
     show-sql: true
     hibernate:
@@ -31,16 +41,43 @@ spring:
   messages:
     basename: i18n.login
   #Thymeleaf配置
-  thymeleaf:
-    cache: false
-    mode: HTML
+  http:
+    encoding:
+      force-response: true
+#  thymeleaf:
+#    cache: false
+#    mode: HTML
 #安全校验
 security:
   basic:
     enabled: true  #默认值：true
-#自定义配置
-#spring-security:
-#  browser:
-#    loginPage:
-#    loginType: HTML
+  oauth2:
+    client:
+      client-id: daishuai #为哪些应用提供认证
+      client-secret: abcdefgh
 
+#自定义配置
+spring-security:
+  browser:
+    loginPage: /demo-login.html
+    #loginType: REDIRECT
+    signUpUrl: /demo-signUp.html
+  social:
+    filterProcessorsUrl: /qqLogin
+    qq:
+      app-id: 101534279
+      app-secret: fcd84a57eff61797ef777a15d1149f55
+      providerId: qq
+    wechat:
+      app-id: wxe80291e805cb4a3a
+      app-secret: 1ee026b000b6b4ab8705709efe672c08
+      providerId: weixin
+  oauth2:
+    clients[0]:
+      clientId: daishuai
+      clientSecret: abcdefgh
+      scope: all
+      grantType: password,authorization_code,custom,refresh_token
+endpoints:
+  health:
+    enabled: false
