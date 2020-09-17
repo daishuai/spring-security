@@ -7,7 +7,7 @@ import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
 
 /**
- * @Description: java类作用描述
+ * @Description: QQ用户信息和Connection的适配器
  * @Author: daishuai
  * @CreateDate: 2018/12/21 9:57
  * @Version: 1.0

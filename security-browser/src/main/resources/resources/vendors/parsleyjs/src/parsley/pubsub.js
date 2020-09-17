@@ -29,7 +29,7 @@ function eventName(name) {
   return name;
 }
 
-// $.listen is deprecated. Use Parsley.on instead.
+// $.listener is deprecated. Use Parsley.on instead.
 $.listen = function (name, callback) {
   var context;
   deprecated();

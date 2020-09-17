@@ -223,7 +223,7 @@ require.register("ftlabs~fastclick@v0.6.11", function (exports, module) {
  * Instantiate fast-clicking listeners on the specificed layer.
  *
  * @constructor
- * @param {Element} layer The layer to listen on
+ * @param {Element} layer The layer to listener on
  */
 function FastClick(layer) {
 	'use strict';
@@ -924,7 +924,7 @@ FastClick.prototype.destroy = function() {
 /**
  * Check whether FastClick is needed.
  *
- * @param {Element} layer The layer to listen on
+ * @param {Element} layer The layer to listener on
  */
 FastClick.notNeeded = function(layer) {
 	'use strict';
@@ -973,7 +973,7 @@ FastClick.notNeeded = function(layer) {
 /**
  * Factory method for creating a FastClick object
  *
- * @param {Element} layer The layer to listen on
+ * @param {Element} layer The layer to listener on
  */
 FastClick.attach = function(layer) {
 	'use strict';

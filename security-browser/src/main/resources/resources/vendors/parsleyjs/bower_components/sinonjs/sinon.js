@@ -782,7 +782,7 @@ var sinon = (function (buster) {
         module.exports = sinon;
         module.exports.spy = require("./sinon/spy");
         module.exports.stub = require("./sinon/stub");
-        module.exports.mock = require("./sinon/mock");
+        module.exports.mock = require("./sinon/wiremock");
         module.exports.collection = require("./sinon/collection");
         module.exports.assert = require("./sinon/assert");
         module.exports.sandbox = require("./sinon/sandbox");
@@ -2029,7 +2029,7 @@ if (!this.sinon && commonJSModule) {
 
     function mock(object) {
         if (!object) {
-            return sinon.expectation.create("Anonymous mock");
+            return sinon.expectation.create("Anonymous wiremock");
         }
 
         return mock.create(object);
@@ -2380,7 +2380,7 @@ if (!this.sinon && commonJSModule) {
                 }
 
                 var callStr = sinon.spyCall.toString.call({
-                    proxy: this.method || "anonymous mock expectation",
+                    proxy: this.method || "anonymous wiremock expectation",
                     args: args
                 });
 
@@ -2427,7 +2427,7 @@ if (!this.sinon && commonJSModule) {
 /**
  * @depend ../sinon.js
  * @depend stub.js
- * @depend mock.js
+ * @depend wiremock.js
  */
 /*jslint eqeqeq: false, onevar: false, forin: true*/
 /*global module, require, sinon*/
@@ -3935,7 +3935,7 @@ if (typeof module == "object" && typeof require == "function") {
 /**
  * @depend ../sinon.js
  * @depend stub.js
- * @depend mock.js
+ * @depend wiremock.js
  * @depend sandbox.js
  */
 /*jslint eqeqeq: false, onevar: false, forin: true, plusplus: false*/
