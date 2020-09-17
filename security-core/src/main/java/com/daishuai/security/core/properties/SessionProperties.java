@@ -3,7 +3,7 @@ package com.daishuai.security.core.properties;
 import lombok.Data;
 
 /**
- * @Description: java类作用描述
+ * @Description: session管理相关配置项
  * @Author: daishuai
  * @CreateDate: 2018/12/23 20:08
  * @Version: 1.0
@@ -25,5 +25,5 @@ public class SessionProperties {
     /**
      * session失效时跳转的地址
      */
-    private String sessionInvalidUrl = SecurityConstants.DEFAULT_SESSION_INVALID_PAGE;
+    private String sessionInvalidUrl = "/default-session-invalid.html";
 }
