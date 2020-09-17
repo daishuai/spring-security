@@ -1,12 +1,14 @@
-package com.daishuai.security.browser;
+package com.daishuai.security;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @Description: 用户
@@ -18,15 +20,16 @@ import javax.persistence.Table;
 @Data
 @Table(name = "user")
 @Entity
-public class User {
+public class User implements Serializable {
 
     public interface UserSimpleView{}
 
     public interface UserDetailView extends UserSimpleView{}
 
     @Id
+    @GeneratedValue
     @JsonView(UserSimpleView.class)
-    private Integer userId;
+    private Integer id;
 
     @NotBlank(message = "用户不能为空")
     @JsonView(UserSimpleView.class)
@@ -37,5 +40,8 @@ public class User {
     private String password;
 
     @JsonView(UserSimpleView.class)
-    private Integer roleId;
+    private String role;
+
+    @JsonView(UserSimpleView.class)
+    private String mobile;
 }

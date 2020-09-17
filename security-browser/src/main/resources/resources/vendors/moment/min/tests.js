@@ -39377,7 +39377,7 @@
                 nextDay = 'v stredu';
                 break;
             case 4:
-                nextDay = 'vo štvrtok';
+                nextDay = 'dto štvrtok';
                 break;
             case 5:
                 nextDay = 'v piatok';

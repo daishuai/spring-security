@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.autoconfigure.social.SocialProperties;
 
 /**
- * @Description: java类作用描述
+ * @Description: 微信登录配置项
  * @Author: daishuai
  * @CreateDate: 2018/12/23 21:46
  * @Version: 1.0

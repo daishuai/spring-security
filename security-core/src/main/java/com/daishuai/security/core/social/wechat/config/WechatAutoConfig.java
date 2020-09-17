@@ -3,7 +3,7 @@ package com.daishuai.security.core.social.wechat.config;
 import com.daishuai.security.core.properties.SecurityProperties;
 import com.daishuai.security.core.properties.WechatProperties;
 import com.daishuai.security.core.social.AbstractSocialAutoConfig;
-import com.daishuai.security.core.social.DefaultConnectView;
+import com.daishuai.security.core.social.view.DefaultConnectView;
 import com.daishuai.security.core.social.wechat.connect.WechatConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

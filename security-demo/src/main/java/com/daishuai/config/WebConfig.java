@@ -7,12 +7,8 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +20,7 @@ import java.util.List;
  * @Version: 1.0
  * Copyright: Copyright (c) 2018
  */
-@Configuration
+//@Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
@@ -47,6 +43,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(timeInterceptor);
     }*/
 
+    /*@Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        configurer.registerCallableInterceptors(timeInterceptor);
+        configurer.registerDeferredResultInterceptors(timeInterceptor);
+    }*/
+
     @Bean
     public MessageConverter messageConverter(){
         return new Jackson2JsonMessageConverter();
@@ -54,8 +56,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/index").setViewName("index");
+        //registry.addViewController("/default-login.html").setViewName("default-login");
+        //registry.addViewController("/index").setViewName("index");
         //registry.addViewController("${server.error.path:${error.path:/error}}").setViewName("error/404");
         super.addViewControllers(registry);
     }

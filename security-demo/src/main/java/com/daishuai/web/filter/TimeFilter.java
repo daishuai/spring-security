@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * @Description: java类作用描述
+ * @Description: 过滤器
  * @Author: daishuai
  * @CreateDate: 2018/8/30 19:05
  * @Version: 1.0
@@ -22,7 +22,7 @@ public class TimeFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        log.info("TimeFilter init");
     }
 
     @Override
@@ -38,6 +38,6 @@ public class TimeFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        log.info("TimeFilter destroy");
     }
 }
