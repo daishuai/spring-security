@@ -1,20 +1,21 @@
 package com.daishuai.security.core.properties;
 
 /**
- * @Description: java类作用描述
+ * @Description: 认证成功后的响应方式
  * @Author: daishuai
- * @CreateDate: 2018/12/18 14:42
+ * @CreateDate: 2018/12/31 14:26
  * @Version: 1.0
  * Copyright: Copyright (c) 2018
  */
-public enum LoginType {
+public enum LoginResponseType {
 
     /**
      * 跳转
      */
     REDIRECT,
+
     /**
-     * json
+     * 返回json
      */
     JSON
 }

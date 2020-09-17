@@ -1,4 +1,4 @@
-package com.daishuai.mock;
+package com.daishuai.wiremock;
 
 
 import org.apache.commons.io.FileUtils;
@@ -20,6 +20,7 @@ public class MockClient {
 
     public static void main(String[] args) throws IOException {
         configureFor(9999);
+        //清除所有配置
         removeAllMappings();
         mock("/user/1", "user");
     }
